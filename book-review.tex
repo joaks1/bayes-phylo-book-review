@@ -47,23 +47,17 @@
 
 After the publication of Felsenstein's seminal paper \citep{Felsenstein1981},
 phylogenetics matured into a likelihood-based statistical endeavor.
-Due to this shift in perspective, phylogenetics has grown from a small, highly
-specialized field 
-%tool for systematists
-into the statistical foundation for comparative biology.
+Thanks to this shift in perspective, phylogenetics has grown from a highly
+specialized field into the statistical foundation for comparative biology.
 However, this growth has not been easy.
 Given the complex, high-dimensional nature of phylogenetic models
 \citep{Kim2000}, phylogenetic inference is a particularly challenging
 statistical problem, both theoretically and computationally. 
-As models of diversification and character have become richer to better capture
-complex evolutionary processes, the demand for Bayesian approaches to the
-challenges of phylogenetic inference has greatly increased.
-% The challenging nature of the problem coupled with the desire for richer models
-% of character change to accommodate complexities of biological evolution has
-% made a Bayesian statistical framework appealing.
+As models of diversification and character change have become richer to better
+capture processes of biological evolution, the appeal of Bayesian approaches to
+tackle the challenges of phylogenetic inference has greatly increased.
 Bayesian approaches can leverage numerical tricks (e.g., data augmentation) and
-the incorporation of prior information to make inference under
-richer evolutionary models practical.
+prior information to make inference under richer evolutionary models practical.
 
 Since the first Bayesian approaches to phylogenetic inference were introduced
 \citep{Rannala1996,Mau1997} almost 20 years ago, Bayesian phylogenetics has
@@ -71,42 +65,46 @@ rapidly increased in sophistication and popularity.
 In fact, the paper describing the most popular Bayesian phylogenetic software
 \citep{Ronquist2003} is listed as the 100\super{th} most cited scientific paper
 of all time \citep{VanNoorden2014}.
-Clearly this field is the worthy subject of a book.
+Clearly the field has come into its own and is the worthy subject of a book.
 
-\bookfulltitle, edited by \editors \citep{Chen2014}, is a collection of 13
-papers contributed by leaders in the field of Bayesian phylogenetics.
+\bookfulltitle, edited by \editors \citep{Chen2014}, is a collection of 12
+chapters contributed by leaders in the field of Bayesian phylogenetics.
 This book is not meant to be a comprehensive or gentle introduction to Bayesian
 phylogenetics.
-% It is not for someone looking for a gentle introduction to the field of
-% Bayesian phylogenetics.
-% Rather it is collection of contributions from leaders in the field
-% represents the cutting-edge of the field
 Rather, in the editors' own words, ``this book provides a snapshot of current
 research in Bayesian phylogenetics, and was envisioned as a way of bringing
 state-of-the-art phylogenetics to the attention of the Bayesian statistical
 community, and state-of-the-art Bayesian statistics to the attention of the of
 the phylogenetics community, with the ultimate goal of encouraging further
 interdisciplinary research.''
-As a snapshot of the current state-of-the-art in Bayesian phylogenetics, this
-book is very successful.
-For a reader with the necessary background in statistics, phylogenies, and
-evolutionary models, \booktitle is great resource to get up to speed with the
-cutting edge and future directions of the field of Bayesian phylogenetics.
+As a snapshot of the current trends in Bayesian phylogenetics, this book is
+missing many areas of active research within the field.
+However, for the topics that are covered, including model selection, priors,
+more efficient numerical algorithms, more realistic evolutionary models,
+phylodynamics, recombination, and divergence-time estimation, 
+the book is a very successfully represents the cutting-edge of current research.
+Overall, for a reader with the necessary background in statistics, phylogenies,
+and evolutionary models, \booktitle is great resource to get up to speed with
+the current state and future direction of many areas of research in Bayesian
+phylogenetics.
 
-A strong emphasis of the book is Bayesian model choice,
-with this being the primary focus of five chapters (Chapters 3--6, 9)
-Given this emphasis, a meaningful review of the book is not possible without a
-light (and very informal) introduction to marginal likelihoods and the
-challenges of computing them.
+A strong emphasis of the book is Bayesian model choice, with five chapters
+(Chapters 3--6, 9) making this their primary focus.  Given this emphasis, a
+meaningful review of the book is not possible without a light (and very
+informal) introduction to marginal likelihoods and the challenges of computing
+them.
 The marginal likelihood of a model is the probability of the data under the
 model, averaged, with respect to the prior, over the whole parameter space.
+It is also the normalizing constant of the posterior distribution.
 Given the large number of parameters in phylogenetic models that need
 to be summed or integrated, this marginalized measure of model fit cannot
 be computed analytically.
 In fact, the success of Bayesian phylogenetics up to this point is largely due
-to numerical approaches that avoid ever having to calculate the marginal
-likelihood (i.e., MCMC).
-However, if we want to compare models, we can't avoid it.
+to numerical approaches (e.g., MCMC) that avoid ever having to calculate the
+marginal likelihood.
+However, as the diversity and richness of phylogenetic models continues to
+rapidly increase, so does the need to compare the fit of models to datasets;
+we can no longer avoid computing the marginal likelihood.
 
 The simplest numerical approximation of the marginal likelihood is to take
 samples of the model's parameters from the prior and turn the intractable
@@ -139,9 +137,9 @@ distributions, along the path connecting the unnormalized posterior to the
 prior (i.e., turn a giant leap into many small steps);
 the path-sampling (PS) \citep{Lartillot2006} and stepping-stone (SS)
 \citep{Xie2011} methods use this strategy.
-The other is to not use the prior as the reference distribution, but rather a
-different proper probability distribution that is as similar as possible to the
-posterior (i.e., turn a giant leap into a smaller leap); 
+The second option is to not use the prior as the reference distribution, but
+rather a different proper probability distribution that is as similar as
+possible to the posterior (i.e., turn a giant leap into a smaller leap); 
 generalized harmonic mean (GHM) estimators \citep{Gelfand1994} use
 this approach.
 The former strategy requires a lot of extra computation that is avoided by the
@@ -150,8 +148,8 @@ The generalized stepping-stone (GSS) technique \citep{Fan2011} combines both
 strategies, sampling from a series of power posteriors along the path
 connecting the unnormalized posterior to a proper reference distribution that
 is ideally as similar to the posterior as possible.
-To date, the GSS is the most efficient method for approximating marginal
-likelihoods of phylogenetic models.
+% To date, the GSS is the most efficient method for approximating marginal
+% likelihoods of phylogenetic models.
 
 The GSS was restricted to estimating marginal likelihoods for a fixed tree
 topology, because a reference distribution for trees was lacking.
@@ -161,8 +159,8 @@ A distribution that samples trees in rough proportion to the posterior promises
 to be broadly applicable beyond the context of the GSS method.
 For example, it can easily be used for generalized versions of HM (GHM) and PS
 (GPS) techniques.
-Arima and Tardella (Chapter 3), allude to this by implementing fixed-tree GPS
-and GHM methods.
+Arima and Tardella, allude to this by implementing fixed-tree GPS and GHM
+methods in Chapter 3.
 
 
 Arima and Tardella (Chapter 3) explore the performance of the inflated density
@@ -182,9 +180,9 @@ Baele and Lemey (Chapter 4) assess the ability of various methods to accurately
 choose the true relaxed-clock model from simulated sequence data.
 They compare HM estimators, AICM (which estimates the Akaike information criterion
 from the likelihoods of posterior samples), and PS and SS techniques.
-Furthermore they compare all of these model-choice approaches to the maximum
-\emph{a posteriori} model estimated by Bayesian model averaging via Markov
-chain Monte Carlo (MCMC).
+Furthermore, they compare all of these marginal likelihood approximations to
+the maximum \emph{a posteriori} model estimated by Bayesian model averaging via
+Markov chain Monte Carlo (MCMC).
 They find that PS, SS, and MAP perform similarly and better than AICM
 and HM estimators.
 % Baele and Lemey also use the SS approach to compare the fit of demographic
@@ -201,52 +199,45 @@ They also prove the statistical consistency of the HM, GSS, and IDR estimators
 when marginalizing over trees.
 Using an empirical dataset, they also show that IDR performs much better than
 the HM estimator, and provides a computationally efficient alternative to the
-most accurate, and computationally demanding SS and PS methods.
+most accurate, yet computationally demanding, SS and PS methods.
 
 Palczewski and Beerli (Chapter 9) derive an identity showing that the overall
 marginal likelihood over an arbitrary number of independent subsets of 
 data (e.g., loci in population genetic models) can be calculated from
 the marginal likelihoods of each subset. 
 This enables the marginal likelihood to be calculated from large-scale
-datasets, by distributing the computation across many processors.
+datasets, by distributing the computation for each locus across many
+processors.
 
-Beyond the focus on estimating marginal likelihoods, \booktitle has several
+Beyond the topic of estimating marginal likelihoods, \booktitle has several
 other interesting chapters.
-In chapter 2, Wang and Yang focus on priors in Bayesian phylogenetics.
+Wang and Yang (Chapter 2) provide a good introduction to priors in Bayesian
+phylogenetics that is properly placed at the beginning of the book.
 They give a succinct introduction to objective versus subjective perspectives
-of Bayesian priors, but maintain the focus of the chapter on evaluating
-the sensitivity of the posterior to the prior.
-They use a simple example of estimating the distance between between
-two DNA sequences as a platform to introduce the likelihood function
-and uniform, Jeffreys, and reference priors.
-
-They do a great job of demonstrating the potential problems
-with high dimension of the inference problem
-with
-using seemingly diffuse, independent priors on the length
-of each branch in the tree.
-They show the very strong (and often biologically implausible) prior
-this places on the sum of these parameters (i.e., the length of the tree),
-and demonstrate the influence this can have on the posterior by
-analyzing an empirical dataset.
-
-*   Coverage of Jeffreys and Reference priors is a bit cursory.
-*   Very nice empirical demonstration of problem with i.i.d. branch length
-    priors.
+on Bayesian priors, but maintain the focus of the chapter on evaluating the
+sensitivity of the posterior to prior assumptions.
+They use a simple example of estimating the distance between between two DNA
+sequences as a platform to introduce uniform, Jeffreys, and reference priors.
+They also demonstrate how the use of independent priors across the
+large number of branch length parameters in phylogenetic models can cause
+problems.
+Wang and Yang use an empirical example to show that even when these independent
+branch length priors are seemingly diffuse, they create a very strong prior on
+the sum of these parameters (i.e., the length of the tree), which can lead to a
+posterior that is biologically unreasonable.
+Furthermore, they show that multivariate prior distributions can avoid this
+problem.
 
 
-
-
-Cheon and Liang (Chapter 7) and Bouchard-C\^{o}t\'{e} (Chapter 8) highlight numerical
-integration algorithms that promise to complement the standard workhorse, MCMC,
-for approximating posteriors of phylogenetic models.
-After a very thorough review of numerical algorithms used in phylogenetics,
-Cheon and Liang introduce a sequential stochastic approximation Monte Carlo (SSAMC) \citep{Liang2007,Cheon2008}
-algorithm.
+Cheon and Liang (Chapter 7) and Bouchard-C\^{o}t\'{e} (Chapter 8) highlight
+numerical integration algorithms that promise to complement the standard
+workhorse, MCMC, for approximating posteriors of phylogenetic models.
+After a very thorough review of numerical algorithms used in Bayesian
+phylogenetics, Cheon and Liang introduce a sequential stochastic approximation
+Monte Carlo (SSAMC) \citep{Liang2007,Cheon2008} algorithm.
 Using simulated data, they show that SSAMC can avoid getting trapped in local
 regions of high posterior density, while exhibiting smaller per-iteration CPU
 times than popular MCMC implementations.
-
 Bouchard-C\^{o}t\'{e} (Chapter 8) provides a very intuitive treatment of
 sequential Monte Carlo algorithms for approximating posteriors of trees.
 Highlighting the "embarrassingly parallel" nature of SMC, he discusses
@@ -255,16 +246,11 @@ Bouchard-C\^{o}t\'{e} also discusses how the sequential nature of the
 algorithm may allow it to accommodate richer models of sequence evolution
 that can cripple MCMC.
 
-Newly developing algorithms are discussed by X, Y, and Z,
-which hold promise to increase the computational efficiency of Bayesian
-phylogenetic inference, and make more biologically rich models of evolution
-computationally feasible.
-
 Kuhner (Chapter 10) gives an intuitive overview of the extreme challenges
 posed by sampling the space of ancestral recombination graphs (ARG).
 While the difficult nature of the problem has made progress on estimating
 ARGs slow, she highlights opportunities for future progress, which is ever more
-important, as more biologists realize that reticulate processes of evolution
+important as biologists realize that reticulate processes of evolution
 often should not be ignored.
 
 Palacios et al.\ (Chapter 11) reviews nonparametric Bayesian methods of
@@ -273,13 +259,12 @@ the problem as estimating the intensity function of a point process,
 they show that a rich literature of computational techniques
 for point processes provides avenues for continuing to move
 this field forward.
-Using simulated data, they also show how increasing the number
-of loci can lead to more precise estimates of the effective
-population size through time.
+Using simulated data, they also show how increasing the number of loci can lead
+to more precise estimates of the effective population size through time.
 
-Currently, models of sequence evolution that are used in phylogenetics are
-largely restricted to models that make it computationally feasible to calculate
-the likelihood via Felsenstein's pruning algorithm \citep{Felsenstein1981}.
+Currently, phylogenetics is largely restricted to models of sequence evolution
+with likelihood functions that can be feasibly calculated via Felsenstein's
+pruning algorithm \citep{Felsenstein1981}.
 To potentially circumvent this limitation, Hobolth and Thorne (Chapter 12)
 propose Bayesian algorithms that can exploit the simpler likelihood form
 of a fully observed Markov process.
@@ -287,36 +272,42 @@ Not only are such methods exciting due to their potential to make biologically
 richer models of evolution computationally feasible, 
 but also because they permit inferences of the detailed evolutionary history
 of sequences along the tree.
-% explore Markov models of sequence evolution that are conditioned upon
-% the endpoints of a branch.
-% endpoint-conditioned trajectories of DNA
-% sequence evolution using Markov models.
 
-Heath and Moore (Chapter 13) provide a very thorough review of Bayesian methods
-for inferring ultrametric phylogenies (with branch lengths in units  of
-relative or absolute time), without assuming a constant rate of nucleotide
-substitution across the tree.
+In the last, but not least, chapter of the book (Chapter 13),
+Heath and Moore provide a very thorough and intuitive review of Bayesian
+methods for inferring time-relative or time-absolute ultrametric phylogenies,
+without assuming a constant rate of nucleotide substitution across the tree.
+They provide a useful categorization of Bayesian ``relaxed-clock'' models,
+which aids in drawing highlighting relationships among the models.
 
-An edited volume allows authors to provide more background and write less
-formally than would be possible in peer-reviewed papers.
+\booktitle is a collection of strong chapters by leaders in the field, but
+lacks cohesion as a book overall.
+For example, an introduction to phylogenetics in the beginning of the book that
+would be helpful to orient readers without a strong background in the field.
+The thorough review of Bayesian approaches to phylogenetics by Cheon and Liang
+in Chapter 7, could have been better placed as a separate chapter at the
+beginning of the book.
+Also, given the amount of overlap among many of the chapters, an effort to
+better maintain consistency of notation across the chapter would have made it
+easier to flip back and forth between chapters.
+Furthermore, consistent divulging of the location of code used to implement new
+methods and run analyses would make the important contributions in the book
+more accessible to the broader community of researchers in the field.
+Perhaps, an auxiliary website with such information could become a nice, albeit
+post hoc, complement to the book.
+
+An edited volume allows authors to write less formally and provide more
+background than would be possible in peer-reviewed papers.
 Many of the authors took advantage of this, making difficult material much more
-accessible to the reader.
-This gives the reader a better intuition of the models and methods
-being described.
+accessible and intuitive to the reader.
 
-References are great resource.
-
-Given the amount of overlap among the chapters, an effort to better maintain
-consistency of notation across the chapter would have made it easier to flip
-back and forth between chapters.
-One thing that is missing is consistent divulging of location of code that implements methods and analyses.
-Perhaps an auxiliary website with such information would be nice complement to the book?
-
-I expect this book will be an important reference as Bayesian approaches to
+I expect \booktitle will be an important resource as Bayesian approaches to
 phylogenetics continue to advance and diversify.
-\booktitle introduces many novel methods and proofs, as well as thorough
-reviews of several areas of statistical phylogenetics.
-As a result, many of the chapters in this book promise to be highly cited.
+It introduces many novel methods and proofs that will be of broad interest to
+statisticians, and includes thorough reviews of several exciting areas of
+statistical phylogenetics.
+As a result, many of the book's chapters will be important (and likely highly
+cited) references.
 
 \bibliographystyle{sysbio}
 \bibliography{references}
